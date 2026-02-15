@@ -14,7 +14,11 @@ set(SOURCES
     src/format.cpp
 )
 
-add_library(dylib STATIC ${SOURCES})
+add_library(dylib ${SOURCES})
+
+if(BUILD_SHARED_LIBS AND WIN32)
+    set_target_properties(dylib PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
 
 target_include_directories(dylib
     PUBLIC
