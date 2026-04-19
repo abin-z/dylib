@@ -13,10 +13,6 @@ target_sources(dylib PRIVATE
     src/format.cpp
 )
 
-if(BUILD_SHARED_LIBS AND WIN32)
-    set_target_properties(dylib PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
-endif()
-
 target_include_directories(dylib
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -26,6 +22,10 @@ target_include_directories(dylib
 target_compile_features(dylib PUBLIC cxx_std_11)
 
 target_link_libraries(dylib PRIVATE ${CMAKE_DL_LIBS})
+
+if(BUILD_SHARED_LIBS AND WIN32)
+    set_target_properties(dylib PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
 
 install(
     TARGETS dylib
