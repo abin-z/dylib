@@ -2,11 +2,6 @@ cmake_minimum_required(VERSION 3.11...3.31)
 
 project(dylib VERSION 3.0.1 LANGUAGES CXX)
 
-if(NOT "${CMAKE_CXX_STANDARD}")
-    set(CMAKE_CXX_STANDARD 11)
-endif()
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(SOURCES
     src/dylib.cpp
     src/symbols.cpp
@@ -25,6 +20,8 @@ target_include_directories(dylib
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
+
+target_compile_features(dylib PUBLIC cxx_std_11)
 
 target_link_libraries(dylib PRIVATE ${CMAKE_DL_LIBS})
 
