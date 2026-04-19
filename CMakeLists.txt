@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.11...3.31)
 
 project(dylib VERSION 3.0.1 LANGUAGES CXX)
 
-set(SOURCES
+add_library(dylib)
+
+target_sources(dylib PRIVATE
     src/dylib.cpp
     src/symbols.cpp
     src/demangle.cpp
     src/format.cpp
 )
-
-add_library(dylib ${SOURCES})
 
 if(BUILD_SHARED_LIBS AND WIN32)
     set_target_properties(dylib PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
