@@ -26,9 +26,7 @@ target_include_directories(dylib
         $<INSTALL_INTERFACE:include>
 )
 
-if(UNIX)
-    target_link_libraries(dylib PRIVATE dl)
-endif()
+target_link_libraries(dylib PRIVATE ${CMAKE_DL_LIBS})
 
 include(GNUInstallDirs)
 
